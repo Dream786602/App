@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Service - Croydon Autos Ltd.</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(90deg, #0044cc, #002288);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+            transition: color 0.3s ease-in-out;
+        }
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+        section {
+            padding: 20px;
+            background: white;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: left;
+        }
+        input, select, textarea, button {
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        input:focus, select:focus, textarea:focus {
+            box-shadow: 0 0 8px #0044cc;
+        }
+        button {
+            background: #0044cc;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease-in-out;
+            padding: 12px;
+            margin-top: 15px;
+        }
+        button:hover {
+            background: #003399;
+        }
+        .confirmation-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #0044cc;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Book a Service - Croydon Autos Ltd.</h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Book Your Auto Service</h2>
+        <p>Fill in the form below to schedule your appointment with us.</p>
+
+        <!-- Booking Form -->
+        <form id="booking-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" required>
+
+            <label for="service">Choose a Service:</label>
+            <select id="service">
+                <option>MOT Testing</option>
+                <option>Car Repairs</option>
+                <option>Vehicle Servicing</option>
+                <option>Brake & Clutch Repairs</option>
+            </select>
+
+            <label for="date">Preferred Date:</label>
+            <input type="date" id="date" required>
+
+            <label for="message">Additional Comments:</label>
+            <textarea id="message" rows="4"></textarea>
+
+            <button type="submit">Confirm Booking</button>
+        </form>
+
+        <!-- Confirmation Message -->
+        <div class="confirmation-message" id="confirmation-message">
+            <p>✅ Thank you, <span id="confirm-name"></span>! Your <span id="confirm-service"></span> booking has been scheduled for <span id="confirm-date"></span>. We will contact you soon.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Croydon Autos Ltd. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("booking-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let service = document.getElementById("service").value;
+            let date = document.getElementById("date").value;
+
+            if (name === "" || email === "" || phone === "" || date === "") {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            // Show Confirmation Message
+            document.getElementById("confirm-name").textContent = name;
+            document.getElementById("confirm-service").textContent = service;
+            document.getElementById("confirm-date").textContent = date;
+            document.getElementById("confirmation-message").style.display = "block";
+
+            // Clear Form
+            document.getElementById("booking-form").reset();
+        });
+    </script>
+
+</body>
+</html>
